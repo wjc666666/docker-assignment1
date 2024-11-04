@@ -55,7 +55,7 @@ Mongo Express (Development only):
 ME_CONFIG_MONGODB_ADMINUSERNAME: MongoDB admin username.
 ME_CONFIG_MONGODB_ADMINPASSWORD: MongoDB admin password.
 ME_CONFIG_MONGODB_SERVER: MongoDB server hostname (e.g., mongodb).
-### M.ulti-Stack.
+### Multi-Stack.
 
 How to Run:
 
