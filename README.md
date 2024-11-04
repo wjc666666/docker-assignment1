@@ -57,4 +57,18 @@ ME_CONFIG_MONGODB_ADMINPASSWORD: MongoDB admin password.
 ME_CONFIG_MONGODB_SERVER: MongoDB server hostname (e.g., mongodb).
 ### M.ulti-Stack.
 
-[Briefly explain how you support building development and production stack options.]
+How to Run:
+
+
++ Set up a .env file in the root directory with the necessary environment variables, using the keys listed in the "Environment Variables" section.
+
++ To start in development mode with database seeding and Mongo Express enabled:
+
++ docker-compose --profile dev up --build
+To start in production mode without Mongo Express and database seeding:
+
++ docker-compose up --build
+Access the services:
+
+Movies API: http://localhost:9000
+Mongo Express (Development only): http://localhost:8080
