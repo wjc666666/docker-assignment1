@@ -7,7 +7,7 @@ services:
     ports:
       - '9000:9000'
     environment:
-      - MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017/tndb_movies
+      - MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017/tmdb_movies
       - REDIS_URI=redis://redis
       - ENABLE_WRITING_HANDLERS=false
     networks:

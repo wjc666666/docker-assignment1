@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 async function run() {
     try {
         await client.connect();
-        const database = client.db('tndb_movies');  
+        const database = client.db('tmdb_movies');  
         const movies = JSON.parse(fs.readFileSync('seeding.json', 'utf8')); 
         const collection = database.collection('movies'); 
         const result = await collection.insertMany(movies);

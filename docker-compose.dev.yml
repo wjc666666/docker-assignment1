@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   api:
     image: doconnor/movies-api:1.0
@@ -51,7 +53,7 @@ services:
     volumes:
       - ./:/app
     environment:
-      - MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017/tndb_movies
+      - MONGODB_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017/tmdb_movies
     depends_on:
       - mongodb
     command: ["node", "seedDatabase.js"]
