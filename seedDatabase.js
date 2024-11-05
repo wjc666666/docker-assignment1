@@ -1,26 +1,26 @@
-const mongoose = require('mongoose');
-const seedingData = require('./seeding.json');
+const { MongoClient } = require('mongodb');
+const fs = require('fs');
 
-const mongoURI = process.env.MONGODB_URI || 'mongodb://admin:password@mongo:27017/tmdb_movies';
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri);
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const movieSchema = new mongoose.Schema({}, { strict: false });
-const Movie = mongoose.model('Movie', movieSchema);
-
-async function seedDatabase() {
-  try {
-    await Movie.deleteMany({});
-    const result = await Movie.insertMany(seedingData);
-    console.log('Data seeded:', result);
-  } catch (error) {
-    console.error('Error seeding data:', error);
-  } finally {
-    mongoose.connection.close();
-  }
+async function run() {
+    try {
+        await client.connect();
+        const database = client.db('tndb_movies');  
+        const movies = JSON.parse(fs.readFileSync('seeding.json', 'utf8')); 
+        const collection = database.collection('movies'); 
+        const result = await collection.insertMany(movies);
+        console.log(`${result.insertedCount} documents were inserted`);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        await client.close();
+    }
 }
 
-seedDatabase();
+run().catch(console.error);
+console.log(`Connecting to database at ${uri}`); 
+await client.connect();
+console.log("Connected successfully to MongoDB");
+
